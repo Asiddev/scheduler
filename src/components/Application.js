@@ -11,6 +11,7 @@ export default function Application(props) {
   const [day, setDay] = useState("Monday");
   const [days, setDays] = useState([]);
 
+  //fetch data for days , render once.
   useEffect(() => {
     axios
       .get("http://localhost:8001/api/days")
