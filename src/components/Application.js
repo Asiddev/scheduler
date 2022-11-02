@@ -1,8 +1,10 @@
 import React from "react";
 
+import appointments from "./Mock_Data/appointments";
 import "components/Application.scss";
 import DayList from "./DayList";
 import { useState } from "react";
+import Appointment from "./Appointment";
 
 const days = [
   {
@@ -25,6 +27,15 @@ const days = [
 export default function Application(props) {
   const [day, setDay] = useState("Monday");
 
+  let allAppointments = Object.values(appointments).map(
+    (appointment, index) => {
+      console.log(appointment);
+      return <Appointment key={appointment.id} {...appointment} />;
+    }
+  );
+
+  console.log(allAppointments.length);
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -43,9 +54,7 @@ export default function Application(props) {
           alt="Lighthouse Labs"
         />
       </section>
-      <section className="schedule">
-        {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
-      </section>
+      <section className="schedule">{allAppointments}</section>
     </main>
   );
 }
