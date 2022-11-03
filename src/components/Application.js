@@ -1,6 +1,5 @@
 import React from "react";
 
-// import appointments from "./Mock_Data/appointments";
 import "components/Application.scss";
 import axios from "axios";
 import DayList from "./DayList";
@@ -12,11 +11,10 @@ export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    // you may put the line below, but will have to remove/comment hardcoded appointments variable
+
     appointments: {},
   });
   const setDay = (day) => setState({ ...state, day });
-  // const setDays = (days) => setState((prev) => ({ ...prev, days }));
 
   //fetch data for days , render once.
   useEffect(() => {
@@ -41,11 +39,8 @@ export default function Application(props) {
   let dailyAppointments = getAppointmentsForDay(state, state.day);
 
   let allAppointments = dailyAppointments.map((appointment) => {
-    console.log(appointment);
     return <Appointment key={appointment.id} {...appointment} />;
   });
-
-  console.log(allAppointments.length);
 
   return (
     <main className="layout">
