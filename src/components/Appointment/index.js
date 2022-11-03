@@ -33,9 +33,7 @@ function Appointment(props) {
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && <Show student={student} interviewer={interviewer} />}
-      {mode === CREATE && (
-        <Form interviewers={[]} onCancel={() => transition(EMPTY)} />
-      )}
+      {mode === CREATE && <Form interviewers={[]} onCancel={() => back()} />}
     </article>
   );
 }
