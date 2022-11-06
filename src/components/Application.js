@@ -35,8 +35,6 @@ export default function Application(props) {
         interviewers: all[2].data,
       }));
     });
-
-    // axios.get("/api/days").then((res) => setDays(res.data));
   }, []);
 
   let dailyAppointments = getAppointmentsForDay(state, state.day);
