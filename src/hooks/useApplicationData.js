@@ -26,9 +26,7 @@ export default function useApplicationData() {
   //book interview
   function bookInterview(id, interview) {
     console.log(interview);
-    if (interview.interviewer === null || interview.student === "") {
-      return Promise.reject("invalid fields");
-    }
+
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
