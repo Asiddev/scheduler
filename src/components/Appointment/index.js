@@ -21,14 +21,6 @@ const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
 function Appointment(props) {
-  let student = undefined;
-  let interviewer = undefined;
-
-  if (props.interview) {
-    student = props.interview.student;
-    interviewer = props.interview.interviewer.name;
-  }
-
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
@@ -38,6 +30,7 @@ function Appointment(props) {
       student: name,
       interviewer,
     };
+
     transition(SAVING);
 
     props
@@ -52,7 +45,7 @@ function Appointment(props) {
     transition(DELETING, true);
 
     props
-      .cancelInterview(props.i)
+      .cancelInterview(props.id)
       .then(() => {
         transition(EMPTY);
       })
@@ -65,8 +58,6 @@ function Appointment(props) {
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
         <Show
-          student={student}
-          interviewer={interviewer}
           interview={props.interview}
           onDelete={() => transition(CONFIRM)}
           onEdit={() => transition(EDIT)}
@@ -75,7 +66,7 @@ function Appointment(props) {
       {mode === CREATE && (
         <Form
           interviewers={props.interviewers}
-          interview
+          interviewer={props.interviewer}
           onSave={save}
           onCancel={() => back(EMPTY)}
           bookInterview={props.bookInterview}
@@ -92,7 +83,7 @@ function Appointment(props) {
       )}
       {mode === EDIT && (
         <Form
-          name={props.name ? props.name : props.interview.student}
+          name={props.name}
           interviewer={props.interview.interviewer.id}
           interviewers={props.interviewers}
           onSave={save}
@@ -100,7 +91,10 @@ function Appointment(props) {
         />
       )}
       {mode === ERROR_SAVE && (
-        <Error message="Could not save appointment." onClose={back} />
+        <Error
+          message="Could not save appointment."
+          onClose={() => transition(EMPTY)}
+        />
       )}
 
       {mode === ERROR_DELETE && (
