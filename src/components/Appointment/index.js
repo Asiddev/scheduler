@@ -67,6 +67,7 @@ function Appointment(props) {
         <Form
           interviewers={props.interviewers}
           interviewer={props.interviewer}
+          student={props.student}
           onSave={save}
           onCancel={() => back(EMPTY)}
           bookInterview={props.bookInterview}
@@ -83,7 +84,7 @@ function Appointment(props) {
       )}
       {mode === EDIT && (
         <Form
-          name={props.name}
+          student={props.student ? props.student : props.interview.student}
           interviewer={props.interview.interviewer.id}
           interviewers={props.interviewers}
           onSave={save}

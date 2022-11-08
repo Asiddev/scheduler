@@ -25,6 +25,7 @@ export default function useApplicationData() {
 
   //book interview
   function bookInterview(id, interview) {
+    console.log(interview);
     if (interview.interviewer === null || interview.student === "") {
       return Promise.reject("invalid fields");
     }
@@ -39,18 +40,23 @@ export default function useApplicationData() {
     };
 
     const weekIndex = findWeekIndex(state.day);
-    console.log("hello", state.days[weekIndex].spots);
-    let updatedDay = {
-      ...state.days[weekIndex],
-      spots: state.days[weekIndex].spots - 1,
-    };
+    // console.log("hello", state.days[weekIndex].spots);
+    let day = state.days[weekIndex];
+
+    // if (state.appointments[id].interview.student !== interview.student) {
+    //   //do not add one
+    // }
+
+    if (!state.appointments[id].interview) {
+      //if the interview never existed before then subtract one
+      day = {
+        ...state.days[weekIndex],
+        spots: state.days[weekIndex].spots - 1,
+      };
+    }
 
     let days = [...state.days];
-
-    days[weekIndex] = updatedDay;
-
-    console.log(state.days);
-    // console.log(state.days[day].name);
+    days[weekIndex] = day;
 
     return axios.put(`/api/appointments/${id}`, appointment).then(() => {
       setState({
@@ -58,7 +64,6 @@ export default function useApplicationData() {
         appointments,
         days,
       });
-      console.log(state);
     });
   }
 
