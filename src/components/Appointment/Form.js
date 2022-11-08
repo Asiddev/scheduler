@@ -3,12 +3,15 @@ import Button from "components/Button";
 import React, { useState } from "react";
 
 function Form(props) {
-  const [student, setStudent] = useState(props.student || "");
-
+  // const [student, setStudent] = useState(props.student || "");
+  // console.log(props.name);
+  const [name, setName] = useState(props.name || "");
+  console.log(props.name);
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
   const reset = function () {
-    setStudent("");
+    // setStudent("");
+    setName("");
     setInterviewer(null);
   };
 
@@ -27,11 +30,12 @@ function Form(props) {
         <form autoComplete="off" onSubmit={(e) => e.preventDefault()}>
           <input
             className="appointment__create-input text--semi-bold"
-            name="name"
+            name={name}
             type="text"
             placeholder="Enter Student Name"
-            value={student}
-            onChange={(e) => setStudent(e.target.value)}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            data-testid={"student-name-input"}
           />
         </form>
         <InterviewerList
@@ -45,7 +49,7 @@ function Form(props) {
           <Button danger onClick={cancel}>
             Cancel
           </Button>
-          <Button confirm onClick={() => props.onSave(student, interviewer)}>
+          <Button confirm onClick={() => props.onSave(name, interviewer)}>
             Save
           </Button>
         </section>

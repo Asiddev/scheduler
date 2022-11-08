@@ -84,7 +84,7 @@ function Appointment(props) {
       )}
       {mode === EDIT && (
         <Form
-          student={props.student ? props.student : props.interview.student}
+          name={props.name ? props.name : props.interview.student}
           interviewer={props.interview.interviewer.id}
           interviewers={props.interviewers}
           onSave={save}
