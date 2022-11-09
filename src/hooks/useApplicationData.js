@@ -25,8 +25,6 @@ export default function useApplicationData() {
 
   //book interview
   function bookInterview(id, interview) {
-    console.log(interview);
-
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
@@ -40,11 +38,6 @@ export default function useApplicationData() {
     const weekIndex = findWeekIndex(state.day);
     // console.log("hello", state.days[weekIndex].spots);
     let day = state.days[weekIndex];
-
-    // if (state.appointments[id].interview.student !== interview.student) {
-    //   //do not add one
-    // }
-
     if (!state.appointments[id].interview) {
       //if the interview never existed before then subtract one
       day = {
@@ -78,7 +71,7 @@ export default function useApplicationData() {
     };
 
     const weekIndex = findWeekIndex(state.day);
-    console.log("hello", state.days[weekIndex].spots);
+    // console.log("hello", state.days[weekIndex].spots);
     let updatedDay = {
       ...state.days[weekIndex],
       spots: state.days[weekIndex].spots + 1,

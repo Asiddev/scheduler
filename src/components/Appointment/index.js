@@ -53,7 +53,7 @@ function Appointment(props) {
   }
 
   return (
-    <article className="appointment">
+    <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
       {mode === SHOW && (
@@ -73,8 +73,8 @@ function Appointment(props) {
           bookInterview={props.bookInterview}
         />
       )}
-      {mode === SAVING && <Status>SAVING</Status>}
-      {mode === DELETING && <Status>DELETING</Status>}
+      {mode === SAVING && <Status>Saving</Status>}
+      {mode === DELETING && <Status>Deleting</Status>}
       {mode === CONFIRM && (
         <Confirm
           onConfirm={remove}
@@ -94,7 +94,7 @@ function Appointment(props) {
       {mode === ERROR_SAVE && (
         <Error
           message="Could not save appointment."
-          onClose={() => transition(EMPTY)}
+          onClose={() => transition(back)}
         />
       )}
 
