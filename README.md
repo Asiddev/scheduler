@@ -38,6 +38,10 @@ https://asiddev-scheduler.netlify.app
 
 -axios
 
+-@testing-library/react-hooks
+
+-react-test-renderer
+
 -classnames
 
 -react

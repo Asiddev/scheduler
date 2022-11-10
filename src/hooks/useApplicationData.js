@@ -49,7 +49,7 @@ export default function useApplicationData() {
     let days = [...state.days];
     days[weekIndex] = day;
 
-    return axios.put(`/api/appointments/${id}`, appointment).then(() => {
+    return axios.put(`api/appointments/${id}`, appointment).then(() => {
       setState({
         ...state,
         appointments,
