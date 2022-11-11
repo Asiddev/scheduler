@@ -30,8 +30,8 @@ export function getInterviewersForDay(state, day) {
 
   let formattedInterviewers = [];
 
-  for (let interviewer of filteredDays[0].interviewers) {
-    formattedInterviewers.push(state.interviewers[interviewer]);
+  for (let interviewer of Object.values(state.interviewers)) {
+    formattedInterviewers.push(state.interviewers[interviewer.id]);
   }
   return formattedInterviewers;
 }
