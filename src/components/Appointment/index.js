@@ -69,7 +69,7 @@ function Appointment(props) {
           interviewer={props.interviewer}
           student={props.student}
           onSave={save}
-          onCancel={() => back(EMPTY)}
+          onCancel={back}
           bookInterview={props.bookInterview}
         />
       )}

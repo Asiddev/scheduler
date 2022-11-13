@@ -3,14 +3,11 @@ import Button from "components/Button";
 import React, { useState } from "react";
 
 function Form(props) {
-  // const [student, setStudent] = useState(props.student || "");
-  // console.log(props.name);
   const [name, setName] = useState(props.name || "");
   const [error, setError] = useState("");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
 
   const reset = function () {
-    // setStudent("");
     setName("");
     setInterviewer(null);
   };
@@ -33,10 +30,6 @@ function Form(props) {
     setError("");
     props.onSave(name, interviewer);
   }
-
-  // function save() {
-  //   props.onSave(student, interviewer);
-  // }
 
   return (
     <main className="appointment__card appointment__card--create">

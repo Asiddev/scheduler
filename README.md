@@ -34,6 +34,10 @@ This will be demonstrated below
 -Heroku/Netlify
 https://asiddev-scheduler.netlify.app
 
+## Github
+
+https://github.com/Asiddev/scheduler
+
 ## Dependencies
 
 -axios
